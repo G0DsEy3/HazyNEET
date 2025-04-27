@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7 Days of NEET Motivation</title>
+    <style>
+        /* CSS Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #fff5f5 0%, #ffebf3 50%, #fdd7f7 100%);
+            min-height: 100vh;
+            color: #5a2a4a;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* Floating Hearts */
+        .hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23ff6b9d"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>') no-repeat center center;
+            background-size: contain;
+            opacity: 0.6;
+            animation: float 15s linear infinite;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) scale(0.5);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-20vh) scale(1.2);
+                opacity: 0;
+            }
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #d23c7a;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            color: #8e477e;
+        }
+        
+        .envelopes-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .envelope-wrapper {
+            position: relative;
+            width: 220px;
+            min-height: 130px;
+            margin-bottom: 50px;
+        }
+        
+        .envelope {
+            width: 220px;
+            height: 130px;
+            background-color: #ffcce6;
+            border-radius: 5px;
+            position: relative;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(210, 60, 122, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #d23c7a;
+            transition: all 0.3s ease;
+            z-index: 1;
+        }
+        
+        .envelope::before {
+            content: '';
+            position: absolute;
+            top: -40px;
+            width: 220px;
+            height: 80px;
+            background-color: #ff99cc;
+            border-radius: 5px 5px 0 0;
+            clip-path: polygon(0 0, 100% 0, 50% 100%);
+            transform-origin: bottom;
+            transition: all 0.3s ease;
+        }
+        
+        .envelope::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            width: 220px;
+            height: 15px;
+            background-color: #e673b3;
+            border-radius: 0 0 5px 5px;
+        }
+        
+        .envelope:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(210, 60, 122, 0.3);
+        }
+        
+        .envelope.open {
+            height: 600px;
+            background-color: #ffe6f2;
+            z-index: 10;
+        }
+        
+        .envelope.open::before {
+            transform: rotateX(180deg);
+            top: -80px;
+        }
+        
+        .quote-box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            padding: 25px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            opacity: 0;
+            transition: all 0.5s ease 0.2s;
+            font-size: 1.2rem;
+            text-align: center;
+            color: #5a2a4a;
+            line-height: 1.7;
+        }
+        
+        .envelope.open .quote-box {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+            animation: textFadeIn 0.5s ease-out;
+        }
+        
+        @keyframes textFadeIn {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.9);
+            }
+            100% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+        
+        .final-message {
+            margin-top: 50px;
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(210, 60, 122, 0.2);
+        }
+        
+        .final-message h2 {
+            font-size: 2rem;
+            color: #d23c7a;
+            margin-bottom: 20px;
+        }
+        
+        .final-quote {
+            font-size: 1.2rem;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+        
+        @media (max-width: 768px) {
+            .envelopes-container {
+                gap: 20px;
+            }
+            
+            .envelope-wrapper {
+                width: 160px;
+            }
+            
+            .envelope {
+                width: 160px;
+                height: 100px;
+                font-size: 2rem;
+            }
+            
+            .envelope::before {
+                width: 160px;
+                top: -30px;
+                height: 60px;
+            }
+            
+            .envelope.open {
+                height: 550px;
+            }
+            
+            .quote-box {
+                font-size: 1rem;
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Hearts Background -->
+    <div class="hearts" id="heartsContainer"></div>
+    
+    <div class="container">
+        <h1>My Love, Your 7-Day NEET Motivation</h1>
+        <p class="subtitle">Click on each envelope to reveal your daily motivation</p>
+        
+        <div class="envelopes-container">
+            <!-- Day 1 -->
+            <div class="envelope-wrapper">
+                <div class="envelope" onclick="toggleEnvelope(this)">
+                    <div>1</div>
+                    <div class="quote-box">
+                        <p>"If love were a chemical equation, you'd be my perfect catalyst; speeding up my heartbeat without being consumed in the reaction. Today, let's make some beautiful chemistry together... in your studies first, then  with me?"</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Day 2 -->
+            <div class="envelope-wrapper">
+                <div class="envelope" onclick="toggleEnvelope(this)">
+                    <div>2</div>
+                    <div class="quote-box">
+                        <p>"You've solved the Riemann hypothesis of my heart - an equation so complex yet you cracked it effortlessly. While you're solving problems today, remember you've already solved the biggest one: how to own this nerd's heart completely."</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Day 3 -->
+            <div class="envelope-wrapper">
+                <div class="envelope" onclick="toggleEnvelope(this)">
+                    <div>3</div>
+                    <div class="quote-box">
+                        <p>"You give me symptoms no medical book could diagnose - dilated pupils when you text, elevated heart rate when you smile. Cure me? Never. Today, focus on becoming the doctor who'll keep me forever enchanted  with love."</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Day 4 -->
+            <div class="envelope-wrapper">
+                <div class="envelope" onclick="toggleEnvelope(this)">
+                    <div>4</div>
+                    <div class="quote-box">
+                        <p>"You're my event horizon - the point of no return where all my resistance collapses into your gravitational pull. Even light can't escape how bright you make my world. Shine that brilliance on your studies today, star."</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Day 5 -->
+            <div class="envelope-wrapper">
+                <div class="envelope" onclick="toggleEnvelope(this)">
+                    <div>5</div>
+                    <div class="quote-box">
+                        <p>"Our love is like π - irrational, infinite, and containing patterns only we understand. Today, calculate this: every hour you study brings you closer to being Dr. Hazel Singh Jasrotia, and me closer to being your biggest trophy husband."</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Day 6 -->
+            <div class="envelope-wrapper">
+                <div class="envelope" onclick="toggleEnvelope(this)">
+                    <div>6</div>
+                    <div class="quote-box">
+                        <p>"You've mutated my DNA - splicing yourself into every chromosome until I can't replicate a single cell without you. Tomorrow you'll conquer NEET, but you've already conquered every strand of my being."</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Day 7 -->
+            <div class="envelope-wrapper">
+                <div class="envelope" onclick="toggleEnvelope(this)">
+                    <div>7</div>
+                    <div class="quote-box">
+                        <p>"Today you'll write answers, but you've already written on my heart in permanent ink. Every question is just you autographing your future - sign boldly, my love, while I hold the universe's pom-poms cheering for you."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="final-message">
+            <h2>You've Got This!</h2>
+            <p class="final-quote">Remember, you're not just answering questions - you're claiming your future.</p>
+            <p class="final-quote">Stay calm, trust your preparation, and let your brilliance shine.</p>
+            <p class="final-quote">I believe in you more than words can say. Go conquer NEET, my love!</p>
+        </div>
+    </div>
+
+    <script>
+        // Create floating hearts
+        function createHearts() {
+            const container = document.getElementById('heartsContainer');
+            const heartCount = 20;
+            
+            for (let i = 0; i < heartCount; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                
+                // Random position and animation
+                const leftPos = Math.random() * 100;
+                const animDuration = 10 + Math.random() * 20;
+                const delay = Math.random() * 15;
+                const size = 0.5 + Math.random() * 1.5;
+                
+                heart.style.left = `${leftPos}vw`;
+                heart.style.animationDuration = `${animDuration}s`;
+                heart.style.animationDelay = `${delay}s`;
+                heart.style.transform = `scale(${size})`;
+                
+                container.appendChild(heart);
+            }
+        }
+        
+        // Toggle envelope function
+        function toggleEnvelope(envelope) {
+            // Close all other envelopes
+            document.querySelectorAll('.envelope').forEach(item => {
+                if (item !== envelope && item.classList.contains('open')) {
+                    item.classList.remove('open');
+                }
+            });
+            
+            // Toggle clicked envelope
+            envelope.classList.toggle('open');
+            
+            // Scroll to envelope if opening
+            if (envelope.classList.contains('open')) {
+                const wrapper = envelope.closest('.envelope-wrapper');
+                wrapper.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+        
+        // Initialize hearts when page loads
+        window.onload = function() {
+            createHearts();
+        };
+    </script>
+</body>
+</html>
